@@ -34,6 +34,7 @@ dependencies {
     implementation("org.apache.camel:camel-management:${camelVersion}")
     implementation("org.apache.camel:camel-cli-connector:${camelVersion}")
     implementation("org.apache.camel:camel-debug:${camelVersion}")
+    implementation("org.apache.camel:camel-kafka:${camelVersion}")
     implementation("org.apache.logging.log4j:log4j-core:${log4jVersion}")
     runtimeOnly("org.apache.logging.log4j:log4j-slf4j2-impl:${log4jVersion}")
 }
