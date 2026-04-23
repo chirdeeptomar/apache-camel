@@ -14,11 +14,10 @@ plugins {
     application
     id("net.ltgt.errorprone") version "4.0.0"
     id("io.freefair.lombok") version "8.6"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-val camelVersion = "4.8.0"
-val log4jVersion = "2.23.1"
+val camelVersion = "4.18.2"
+val log4jVersion = "2.25.4"
 val errorproneVersion = "2.32.0"
 
 repositories {
@@ -39,6 +38,7 @@ dependencies {
     implementation("org.apache.camel:camel-cli-connector:${camelVersion}")
     implementation("org.apache.camel:camel-debug:${camelVersion}")
     implementation("org.apache.camel:camel-kafka:${camelVersion}")
+    implementation("org.apache.camel:camel-nats:${camelVersion}")
     implementation("org.apache.logging.log4j:log4j-core:${log4jVersion}")
 
     errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
@@ -62,17 +62,4 @@ application {
 
 tasks.withType<JavaCompile>().configureEach {
     options.errorprone.disableWarningsInGeneratedCode.set(true)
-    options.compilerArgs.addAll(listOf(
-        "-Xplugin:ErrorProne",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
-        "--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
-        "--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
-        "--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED"
-    ))
 }
